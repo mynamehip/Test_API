@@ -2,9 +2,9 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics.CodeAnalysis;
 
-namespace WebApplication1.Data
+namespace WebApplication1.Entities
 {
-    public class HangHoa
+    public class Hanghoa
     {
         [Key]
         public Guid Mahh { get; set; }
@@ -19,5 +19,11 @@ namespace WebApplication1.Data
         public int? MaLoai { get; set; }
         [ForeignKey("MaLoai")]
         public Loaihh Loaihh { get; set; }
+
+        public ICollection<Chitietdh> Chitietdh { get; set; }
+        public Hanghoa()
+        {
+            Chitietdh = new List<Chitietdh>();
+        }
     }
 }

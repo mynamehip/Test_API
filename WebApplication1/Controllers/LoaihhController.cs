@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication1.Data;
+using WebApplication1.Entities;
 using WebApplication1.Model;
 
 namespace WebApplication1.Controllers
@@ -18,14 +18,14 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var dsLoai = _dbContext.Loaihhs.ToList();
+            var dsLoai = _dbContext.Loaihh.ToList();
             return Ok(dsLoai);
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
-            var loaiById = _dbContext.Loaihhs.Where(x => x.MaLoai == id).FirstOrDefault();
+            var loaiById = _dbContext.Loaihh.Where(x => x.MaLoai == id).FirstOrDefault();
             if (loaiById == null)
             {
                 return NotFound();
@@ -55,7 +55,7 @@ namespace WebApplication1.Controllers
         [HttpPut("{id}")]
         public IActionResult UpdateById(int id, LoaihhModel model)
         {
-            var loaiById = _dbContext.Loaihhs.Where(x => x.MaLoai == id).FirstOrDefault();
+            var loaiById = _dbContext.Loaihh.Where(x => x.MaLoai == id).FirstOrDefault();
             if (loaiById == null)
             {
                 return NotFound();

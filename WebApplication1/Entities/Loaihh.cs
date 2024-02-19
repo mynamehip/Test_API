@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace WebApplication1.Data
+namespace WebApplication1.Entities
 {
     public class Loaihh
     {
@@ -10,6 +10,6 @@ namespace WebApplication1.Data
         [MaxLength(50)]
         public string TenLoai { get; set; }
 
-        public virtual ICollection<HangHoa> HangHoa { get; set;}
+        public virtual ICollection<Hanghoa> HangHoa { get; set;}
     }
 }
