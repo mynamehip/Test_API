@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Entities;
-using WebApplication1.Model;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
                 };
                 _dbContext.Add(loai);
                 _dbContext.SaveChanges();
-                return Ok(loai);
+                return StatusCode(StatusCodes.Status201Created, loai);
             }
             catch
             {
@@ -63,6 +63,19 @@ namespace WebApplication1.Controllers
             loaiById.TenLoai = model.TenLoai;
             _dbContext.SaveChanges();
             return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public IActionResult DeleteById(int id)
+        {
+            var loaiById = _dbContext.Loaihh.Where(x => x.MaLoai == id).FirstOrDefault();
+            if (loaiById == null)
+            {
+                return NotFound();
+            }
+            _dbContext.Remove(loaiById);
+            _dbContext.SaveChanges();
+            return Ok();
         }
     }
 }
